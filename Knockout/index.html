@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knockout</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Knockout!</h1>
+            <button id="consoleButton" class="invisibleButton"><p>Don't do it..</p></button>
+            <button id="showButton" class="rules">Rules</button>
+            <ul id="hiddenRules" class="rules">
+                <li>Choose a "lucky" number below.</li>
+                <li>Roll the dice.</li>
+                <li>The sum of your dice add up to your total score.</li>
+                <li>If you roll your "lucky" number, it's game over!</li>
+                <li>Complete the game once to unlock lazy-mode in console.</li>
+            </ul>
+            </header>
+        <main>
+            <h2 id="secondHeading">Choose your "lucky" number:</h2>
+            <div class="luckyButtons">
+                <button id="numberSix"><h1>6</h1></button>
+                <button id="numberSeven"><h1>7</h1></button>
+                <button id="numberEight"><h1>8</h1></button>
+                <button id="numberNine"><h1>9</h1></button>
+            </div>
+        </main>
+        <section class="diceSectionHide">
+            <h2>Click the dice to roll.</h2>
+            <a href="#">
+                <img src="img/dice-1.svg" alt="Dice 1" id="d1" class="diceShow">
+                <img src="img/dice-2.svg" alt="Dice 2" id= "d2" class="diceShow">
+            </a>
+            <h3>Current score: 0</h3>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

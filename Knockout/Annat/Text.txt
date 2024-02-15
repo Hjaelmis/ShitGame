@@ -1,0 +1,178 @@
+Spelregler
+1. Spelaren väljer 6, 7, 8, eller 9 som deras "knockout" siffra.
+
+2. Spelaren kastar två tärningar samtidigt och adderar resultatet. Om det adderade värdet blir ditt "knockout"-nummer har du förlorat.
+
+3. För varje kast så räknas resultaten ihop till en totalsumma. Spelet går ut på att få så hög totalsumma som möjligt.
+
+
+
+
+Tänk på följande
+Spelaren ska kasta tärningar genom att klicka på en knapp.
+Koda ett interface som är användarvänlig och kommunicerar väl med spelaren.
+Hela interfacet synas i viewporten, alltså ingen skroll.
+Koden ska vara buggfri. Se konsolen för eventuella buggar. 
+Programmet får inte krascha oavsett vad. Kontrollera att det inte går att kasta tärningar utan att välja först knockout siffran. Ett program som kraschar inte når ett högre betyg.
+Hitta ett smidigt sätt för att starta om spelet.
+Lägg kommentarer där det händer viktiga saker i koden.
+Skriv kod som har hög läsbarhet (bra indentering, kommentarer, tydliga namn på variabler/funktioner). 
+
+
+
+
+Vad händer i skissen?
+ruta nr 1
+    Button: hurry: kör spelet automatiskt
+    Header: knockout
+    paragraf felix södersdtröm
+    4st buttons (6, 7, 8, 9)
+    Header: Choose number
+    Drop down menu: visar regler
+
+ruta nr2
+    Klick på "rules"
+    Drop down meny aktiveras, visr spelregler.
+    Klick på rules igen och menyn åker ner.
+
+ruta nr3
+    Siffran 9 har valts
+    ikonen flyttas upp till mitten av skärmen.
+    Ikonen är en knapp. On hover visar den att man kan gå tillbaka till start.
+    2 tärningar läggs till på mitten av skärmen.
+
+ruta nr4
+    nian och tärningarna är på plats.
+    text dyker upp med instruktioner att klicka på tärningar
+
+ruta nr5
+    simpel animation där tärningarna rullar
+
+ruta nr6
+    2 tärningar har slutat rulla.
+    de visar två st värden
+    värdet är 8
+    score visas som 8.
+    texten "click the dice" dyker upp igen.
+
+ruta nr7
+    ruta nr5
+
+ruta nr8/9
+    tärningarna har en summa av lucky number
+    spelet är över
+    score visas
+    knappen med lucky number görs om till startknapp.
+        startknappen leder till ruta 1
+
+
+om man klickar på "hurry"
+    spelet väljer ett lucky number åt dig och kör spelet automatiskt.
+    det första du ser efter klicket är ruta nr8/9
+
+
+
+
+Vad är det som händer bakom kulisserna?
+Ruta nr 1 (HOMESCREEN)
+    <button> 'In a hurry?'
+    <h1> Knockout
+    <p> Felix Söderström
+    luckyNumberSelector {
+        <button> '6'
+        <button> '7'
+        <button> '8'
+        <button> '9'
+    }
+    <h2> Chooose your lucky number
+    <button type:menu> 'Rules'
+
+Ruta nr2
+    <button type:menu> Clicked
+        <p> 'rules'
+
+Ruta nr 3
+    <button> luckyNumber
+    luckyNumber = 9
+
+Ruta nr 4 (ROLLSCREEN)
+    <button> luckyNumber (som text)
+    <button:hover> HOME (tillbaka till ruta nr 1)
+    <h1> 'click dice to play'
+    <button> 2st dice
+
+Ruta nr 5
+    Dice is Clicked
+    Generera 2 random numbers.
+        Put in array
+        let sum = sum of array
+        IF Sum of arrayCurrentScore = luckyNumber
+            GAMEOVERSCREEN
+        ELSE
+            ADD sum to arrayTotalScore
+            return to ROLLSCREEN
+
+ruta nr 6 (ROLLSCREEN)
+    <button> Same as before
+    <h1> click dice 
+    <Button> 2 dice
+    <h2> 'Score: ' + arrayTotalScore
+
+Ruta nr7
+    basically just ruta nr 5
+    <h2> Score: + arrayTotalScore
+
+Ruta nr 8 (GAMEOVERSCREEN)
+    <button> luckyNumber blir homebutton (till HOMEPAGE)
+    <h1> 'game over'
+    <button> 2st dice (gör ingenting)
+
+
+
+
+
+Actual code, first draft:
+let hurryUpButton = socument.querySelector('dasbutton')
+let luckyNumber = 0
+let totalScore = [];
+let finalScore = 0;
+
+
+hurryUpButton.addEventListener('click', function() {
+    let luckyNumber = Math.floor(Math.random() *4) + 6;
+})
+    inAHurry ()
+
+
+
+function rollDice () {
+    let rollOne = Math.ceil(Math.random() * 6);
+    let rollTwo = Math.ceil(Math.random() * 6);
+    let rollScore = rollOne + rollTwo
+
+    if (rollOne + rollTwo !== luckyNumber) {
+        totalScore.push(rollOne + rollTwo);
+        rollDice();
+    } else {
+
+        gameOver ();
+    }
+}
+
+
+function gameOver() {
+    console.log('game over '+finalScore)
+}
+
+
+
+
+mer pseudo om knapparna
+
+listen for click in main
+    let luckyNumber = class of item clicked
+        function (luckyNumber)
+
+function (){
+    roll dice
+}
